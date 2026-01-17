@@ -46,5 +46,4 @@ public final class GuessResult {
 	public void setMessage(String message) {
 		this.message = message;
 	}
-
 }

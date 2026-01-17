@@ -1,23 +1,29 @@
 package com.dandaev.edu.engine;
 
-import com.dandaev.edu.entities.GameState;
-import com.dandaev.edu.entities.Word;
+import java.util.HashSet;
 
-public class GameEngine {
-	String guess(char c) {
-		throw new UnsupportedOperationException("Method is not implemented yet");
+public final class GameEngine {
+	protected boolean applyGuess(String word, HashSet<Character> guessed, char guess) {
+		boolean found = false;
+		for (int i = 0; i < word.length(); i++) {
+			if (word.charAt(i) == guess) {
+				found = true;
+				guessed.add(guess);
+			}
+		}
+		return found;
 	}
 
-	String getMaskedWord() {
-		throw new UnsupportedOperationException("Method is not implemented yet");
+	protected String buildView(String word, HashSet<Character> guessed) {
+		var view = new StringBuilder();
+		for (int i = 0; i < word.length(); i++) {
+			char c = word.charAt(i);
+			view.append( guessed.contains(c) ? c : '_');
+		}
+		return view.toString();
 	}
 
-	boolean isFinished() {
-		throw new UnsupportedOperationException("Method is not implemented yet");
-	}
-
-	public GameState startNewGame(Word word){
-		
-		throw new UnsupportedOperationException("Method is not implemented yer");
+	protected boolean isWin(String view) {
+		return view.indexOf('_') == -1;
 	}
 }
