@@ -1,0 +1,84 @@
+text;hint;category;difficulty
+apple;red or green fruit;FOOD;EASY
+banana;yellow fruit;FOOD;EASY
+orange;citrus fruit;FOOD;EASY
+grape;small sweet fruit;FOOD;EASY
+lemon;sour yellow fruit;FOOD;EASY
+peach;soft fruit with stone;FOOD;EASY
+pear;green sweet fruit;FOOD;EASY
+plum;small purple fruit;FOOD;EASY
+melon;large sweet fruit;FOOD;MEDIUM
+avocado;green creamy fruit;FOOD;MEDIUM
+broccoli;green healthy vegetable;FOOD;EASY
+carrot;orange root vegetable;FOOD;EASY
+potato;common food plant;FOOD;EASY
+tomato;red juicy vegetable;FOOD;EASY
+cucumber;green fresh vegetable;FOOD;EASY
+pizza;popular italian dish;FOOD;MEDIUM
+burger;sandwich with meat;FOOD;MEDIUM
+pasta;italian noodles;FOOD;EASY
+cheese;dairy product;FOOD;EASY
+chocolate;sweet dessert;FOOD;EASY
+
+dog;domestic animal;ANIMALS;EASY
+cat;small домашний питомец;ANIMALS;EASY
+cow;farm animal;ANIMALS;EASY
+sheep;animal with wool;ANIMALS;EASY
+horse;large farm animal;ANIMALS;MEDIUM
+lion;king of the jungle;ANIMALS;MEDIUM
+tiger;striped animal;ANIMALS;MEDIUM
+bear;large wild animal;ANIMALS;MEDIUM
+wolf;wild pack animal;ANIMALS;MEDIUM
+fox;clever wild animal;ANIMALS;MEDIUM
+elephant;largest land animal;ANIMALS;MEDIUM
+giraffe;animal with long neck;ANIMALS;EASY
+zebra;striped african animal;ANIMALS;EASY
+monkey;animal that climbs trees;ANIMALS;EASY
+kangaroo;australian animal;ANIMALS;MEDIUM
+panda;black and white bear;ANIMALS;EASY
+eagle;bird of prey;ANIMALS;MEDIUM
+shark;dangerous sea animal;ANIMALS;MEDIUM
+dolphin;intelligent sea animal;ANIMALS;EASY
+whale;largest sea animal;ANIMALS;MEDIUM
+
+computer;electronic device;IT;EASY
+keyboard;input device for typing;IT;EASY
+mouse;computer pointing device;IT;EASY
+screen;display device;IT;EASY
+printer;prints documents;IT;EASY
+server;provides services over network;IT;MEDIUM
+network;connected computers;IT;MEDIUM
+database;structured data storage;IT;MEDIUM
+algorithm;step by step solution;IT;MEDIUM
+software;computer programs;IT;EASY
+hardware;physical computer parts;IT;EASY
+compiler;translates source code;IT;HARD
+encryption;data protection method;IT;HARD
+protocol;communication rules;IT;HARD
+framework;software development base;IT;MEDIUM
+interface;connection between systems;IT;MEDIUM
+debugging;finding program errors;IT;MEDIUM
+iteration;repeated execution;IT;MEDIUM
+variable;stores a value;IT;EASY
+function;reusable block of code;IT;EASY
+
+doctor;medical specialist;MEDICINE;MEDIUM
+nurse;helps doctors in hospital;MEDICINE;EASY
+patient;person receiving treatment;MEDICINE;EASY
+tablet;medicine in solid form;MEDICINE;EASY
+syringe;tool for injection;MEDICINE;MEDIUM
+vaccine;prevents disease;MEDICINE;MEDIUM
+antibiotic;medicine against bacteria;MEDICINE;MEDIUM
+therapy;medical treatment process;MEDICINE;MEDIUM
+diagnosis;identifying disease;MEDICINE;MEDIUM
+symptom;sign of illness;MEDICINE;EASY
+virus;infectious agent;MEDICINE;MEDIUM
+bacteria;microscopic organism;MEDICINE;MEDIUM
+fracture;broken bone;MEDICINE;MEDIUM
+surgery;medical operation;MEDICINE;HARD
+anatomy;study of body structure;MEDICINE;HARD
+physiology;study of body functions;MEDICINE;HARD
+immunity;body defense system;MEDICINE;MEDIUM
+neurosis;mental health disorder;MEDICINE;HARD
+cardiology;heart medicine field;MEDICINE;HARD
+neurology;nervous system medicine;MEDICINE;HARD

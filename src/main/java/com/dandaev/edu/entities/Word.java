@@ -2,9 +2,9 @@ package com.dandaev.edu.entities;
 
 public class Word {
 	private String text;
+	private String hint;
 	private Category category;
 	private Difficulty difficulty;
-	private String hint;
 
 	public String getText() {
 		return text;
