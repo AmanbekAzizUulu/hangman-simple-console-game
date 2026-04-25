@@ -12,7 +12,6 @@ import com.dandaev.edu.entities.GameStatus;
 import com.dandaev.edu.ui.ConsoleUI;
 import com.dandaev.edu.utils.FileWordProvider;
 
-// @formatter:off
 public final class Game {
 	private static final int MAX_WRONG_ATTEMPTS = 6;
 	private static final String[] HANGMAN_STAGES = {

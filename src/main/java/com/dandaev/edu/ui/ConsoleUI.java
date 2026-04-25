@@ -28,15 +28,15 @@ public final class ConsoleUI {
 
 	public static Category categorySelection(Scanner scanner) {
 		// NOTE: отображение категории
-		out.println("[GAME] Choose a category:");
+		out.println("[STUP] Choose a category:");
 		var categories = Category.values();
 		for (int i = 0; i < categories.length; i++) {
-			out.printf("[GAME] %d. %s%n", i + 1, categories[i].name());
+			out.printf("[STUP] %d. %s%n", i + 1, categories[i].name());
 		}
 
 		// NOTE: отображение выбора категории
 		while (true) {
-			out.print("[GAME] Enter the number: ");
+			out.print("[STUP] Enter the number: ");
 			var input = scanner.nextLine().trim();
 			try {
 				int choice = Integer.parseInt(input);
@@ -46,22 +46,22 @@ public final class ConsoleUI {
 			} catch (NumberFormatException ignored) {
 				/* NOTE: никак не реагируем */
 			}
-			out.println("[GAME] Invalid choice, please try again.");
+			out.println("[STUP] Invalid choice, please try again.");
 		}
 	}
 
 	public static Difficulty difficultySelection(Scanner scanner) {
 		// NOTE: отображение вариантов сложности
-		out.println("[GAME] Choose difficulty:");
+		out.println("[STUP] Choose difficulty:");
 		var difficulties = Difficulty.values();
 
 		for (int i = 0; i < difficulties.length; i++) {
-			out.printf("[GAME] %d. %s%n", i + 1, difficulties[i].name());
+			out.printf("[STUP] %d. %s%n", i + 1, difficulties[i].name());
 		}
 
 		// NOTE: отображение выбора сложности
 		while (true) {
-			out.print("[GAME] Enter the number: ");
+			out.print("[STUP] Enter the number: ");
 			var input = scanner.nextLine().trim();
 			try {
 				int choice = Integer.parseInt(input);
@@ -71,13 +71,13 @@ public final class ConsoleUI {
 			} catch (NumberFormatException ignored) {
 				/* NOTE: никак не реагируем */
 			}
-			out.println("[GAME] Invalid choice, please try again.");
+			out.println("[STUP] Invalid choice, please try again.");
 		}
 	}
 
 	// @formatter:off
 	public static void showGameStartInfo(Category category, Difficulty difficulty, int wordLength) {
-		out.printf("[GAME] Starting game with category: %s, difficulty: %s, the word has %d letters%n", category.name(), difficulty.name(), wordLength);
+		out.printf("[STUP] Starting game with category: %s, difficulty: %s, the word has %d letters%n", category.name(), difficulty.name(), wordLength);
 		out.println("[GAME] ====================================");
 	}
 
