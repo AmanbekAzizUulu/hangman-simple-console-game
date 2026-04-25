@@ -13,6 +13,7 @@ import com.dandaev.edu.entities.Category;
 import com.dandaev.edu.entities.Difficulty;
 import com.dandaev.edu.entities.Word;
 
+// NOTE: реализация файлового хранилища слов
 // @formatter:off
 public final class FileWordProvider implements WordProvider {
 	private final List<Word> words;
