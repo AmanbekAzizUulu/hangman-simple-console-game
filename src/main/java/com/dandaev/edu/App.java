@@ -4,6 +4,6 @@ import com.dandaev.edu.engine.Game;
 
 public class App {
 	public static void main(String[] args) {
-		Game.start();
+		new Game().start();
 	}
 }

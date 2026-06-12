@@ -1,160 +1,52 @@
 package com.dandaev.edu.engine;
 
-import static java.lang.System.out;
-import static com.dandaev.edu.ui.ConsoleUI.*;
-import static java.lang.System.in;
-
-import java.util.HashSet;
-import java.util.Locale;
 import java.util.Scanner;
 
-import com.dandaev.edu.entities.GameStatus;
 import com.dandaev.edu.ui.ConsoleUI;
 import com.dandaev.edu.utils.FileWordProvider;
+import com.dandaev.edu.utils.WordProvider;
 
 public final class Game {
-	private static final int MAX_WRONG_ATTEMPTS = 6;
-	private static final String[] HANGMAN_STAGES = {
-					"""
-							   +---+
-							   |   |
-							       |
-							       |
-							       |
-							       |
-							=========
-					""",
-					"""
-							   +---+
-							   |   |
-							   O   |
-							       |
-							       |
-							       |
-							=========
-					""",
-					"""
-							   +---+
-							   |   |
-							   O   |
-							   |   |
-							       |
-							       |
-							=========
-					""",
-					"""
-							   +---+
-							   |   |
-							   O   |
-							  /|   |
-							       |
-							       |
-							=========
-					""",
-					"""
-							   +---+
-							   |   |
-							   O   |
-							  /|\\  |
-							       |
-							       |
-							=========
-					""",
-					"""
-							   +---+
-							   |   |
-							   O   |
-							  /|\\  |
-							  /    |
-							       |
-							=========
-					""",
-					"""
-							   +---+
-							   |   |
-							   O   |
-							  /|\\  |
-							  / \\  |
-							       |
-							=========
-					"""
-	};
+	private final GameEngine engine;
+	private final ConsoleUI consoleUI;
+	private final WordProvider wordProvider;
 
-	private final static GameEngine engine = new GameEngine();
-
-	private Game() {
+	private Game(GameEngine engine, ConsoleUI consoleUI, WordProvider wordProvider) {
+		this.engine = engine;
+		this.consoleUI = consoleUI;
+		this.wordProvider = wordProvider;
 	}
 
-	public static void start() {
-		try (var scanner = new Scanner(in)) {
-			showIntro();
+	public Game() {
+		this(new GameEngine(), new ConsoleUI(), new FileWordProvider("/words.csv"));
+	}
+
+	public void start() {
+		try (var scanner = new Scanner(System.in)) {
 			while (true) {
-				// NOTE: настройка игры – выбор категории и сложности
-				var settings = GameSetup.configureGame(scanner);
+				consoleUI.showIntro();
 
-				// NOTE: получение слова согласно выбору
-				var provider = new FileWordProvider("/words.csv");
-				var word = provider.getRandom(settings.category(), settings.difficulty()).orElseThrow(() -> new IllegalStateException("No words for chosen filters"));
+				var category = consoleUI.categorySelection(scanner);
+				var difficulty = consoleUI.difficultySelection(scanner);
+				var settings = new GameSettings(category, difficulty);
 
-				var guessedCharacters = new HashSet<Character>();
+				var word = wordProvider.getRandom(settings.category(), settings.difficulty()).orElseThrow(() -> new IllegalStateException("No words for chosen filters"));
+
 				var secret = word.getText();
-				var wrongAttempts = 0;
 
-				// NOTE: вывод информации об игре
-				showGameStartInfo(settings.category(), settings.difficulty(), secret.length());
+				consoleUI.showGameStartInfo(settings.category(), settings.difficulty(), secret.length());
 
-				// NOTE: игровой цикл
-				while (true) {
-					out.print("[GAME] Type in your guess [single letter]: ");
-					var userStringInput = scanner.nextLine().trim().toLowerCase(Locale.ROOT);
+				var gameRound = new GameRound(secret);
 
-					if (userStringInput.length() != 1) {
-						out.println("[GAME] Pls, type in single letter");
-						continue;
-					}
-					if (!userStringInput.matches("[a-z]")) {
-						out.println("[GAME] Please use latin letters (a-z)");
-						continue;
-					}
+				gameRound.play(scanner, engine, consoleUI);
 
-					var guess = userStringInput.charAt(0);
-
-					var isNewWrong = secret.indexOf(guess) == -1 && !guessedCharacters.contains(guess);
-					if (isNewWrong) {
-						wrongAttempts++;
-					}
-
-					var gameResult = engine.guess(secret, guessedCharacters, guess);
-					var viewStr = engine.buildView(secret, guessedCharacters);
-
-					var stage = HANGMAN_STAGES[Math.min(wrongAttempts, MAX_WRONG_ATTEMPTS)];
-					for (String line : stage.split("\n")) {
-						out.println("[GAME] " + line);
-					}
-					out.println("[GAME] " + gameResult.getMessage());
-					out.println("[GAME] " + viewStr);
-
-					if (gameResult.getStatusAfter() == GameStatus.WON) {
-						out.println("[GAME]");
-						out.println("[GAME] ------------------------------------");
-						out.println("[GAME] You Won!");
-						out.println("[GAME] Guessed word: " + viewStr);
-						break;
-					}
-
-					if (wrongAttempts >= MAX_WRONG_ATTEMPTS) {
-						out.println("[GAME]");
-						out.println("[GAME] ------------------------------------");
-						out.println("[GAME] You Lost! The word was: " + secret);
-						break;
-					}
-				}
-
-				// NOTE: выход из игрового цикла (раунд завершён) — спрашиваем о повторе
-				if (!ConsoleUI.askPlayAgain(scanner)) {
-					out.println("[GAME] Goodbye!");
+				if (!consoleUI.askPlayAgain(scanner)) {
+					consoleUI.printGame("Goodbye!");
 					break;
 				}
+				
+				consoleUI.clearConsole();
+				consoleUI.showIntro();
 			}
 		}
 	}

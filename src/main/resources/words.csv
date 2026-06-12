@@ -19,6 +19,16 @@ burger;sandwich with meat;FOOD;MEDIUM
 pasta;italian noodles;FOOD;EASY
 cheese;dairy product;FOOD;EASY
 chocolate;sweet dessert;FOOD;EASY
+artichoke;edible flower bud;FOOD;HARD
+asparagus;spring vegetable;FOOD;HARD
+cauliflower;white flower vegetable;FOOD;HARD
+cinnamon;aromatic spice;FOOD;HARD
+saffron;expensive spice from flower;FOOD;HARD
+truffle;rare underground mushroom;FOOD;HARD
+quinoa;andеan grain;FOOD;HARD
+zucchini;green summer squash;FOOD;HARD
+rhubarb;tart red stalks;FOOD;HARD
+lentil;small protein-rich legume;FOOD;HARD
 
 dog;domestic animal;ANIMALS;EASY
 cat;small домашний питомец;ANIMALS;EASY
@@ -40,6 +50,16 @@ eagle;bird of prey;ANIMALS;MEDIUM
 shark;dangerous sea animal;ANIMALS;MEDIUM
 dolphin;intelligent sea animal;ANIMALS;EASY
 whale;largest sea animal;ANIMALS;MEDIUM
+platypus;egg-laying mammal;ANIMALS;HARD
+armadillo;armored mammal;ANIMALS;HARD
+chameleon;color-changing lizard;ANIMALS;HARD
+jellyfish;sea creature with tentacles;ANIMALS;HARD
+rhinoceros;large horned mammal;ANIMALS;HARD
+cheetah;fastest land animal;ANIMALS;HARD
+orangutan;great ape from Borneo;ANIMALS;HARD
+hippopotamus;large river mammal;ANIMALS;HARD
+octopus;eight-armed sea creature;ANIMALS;HARD
+panther;black big cat;ANIMALS;HARD
 
 computer;electronic device;IT;EASY
 keyboard;input device for typing;IT;EASY

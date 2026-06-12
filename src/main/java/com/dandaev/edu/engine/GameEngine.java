@@ -1,12 +1,12 @@
 package com.dandaev.edu.engine;
 
-import java.util.HashSet;
+import java.util.Set;
 
 import com.dandaev.edu.entities.GameStatus;
 import com.dandaev.edu.entities.GuessResult;
 
 public final class GameEngine {
-	public GuessResult guess(String word, HashSet<Character> guessed, char guess) {
+	public GuessResult guess(String word, Set<Character> guessed, char guess) {
 		GuessResult result = new GuessResult();
 
 		if (guessed.contains(guess)) {
@@ -32,8 +32,7 @@ public final class GameEngine {
 		result.setAlreadyGuessed(false);
 		result.setHit(hit);
 
-		String view = buildView(word, guessed);
-		if (isWin(view)) {
+		if (allLettersGuessed(word, guessed)) {
 			result.setStatusAfter(GameStatus.WON);
 			result.setMessage("You won!");
 		} else {
@@ -44,13 +43,13 @@ public final class GameEngine {
 		return result;
 	}
 
-	protected String buildView(String word, HashSet<Character> guessed) {
-		var view = new StringBuilder();
+	private boolean allLettersGuessed(String word, Set<Character> guessed) {
 		for (int i = 0; i < word.length(); i++) {
-			char c = word.charAt(i);
-			view.append(guessed.contains(c) ? c : '_');
+			if (!guessed.contains(word.charAt(i))) {
+				return false;
+			}
 		}
-		return view.toString();
+		return true;
 	}
 
 	protected boolean isWin(String view) {

@@ -13,7 +13,6 @@ import com.dandaev.edu.entities.Category;
 import com.dandaev.edu.entities.Difficulty;
 import com.dandaev.edu.entities.Word;
 
-// NOTE: реализация файлового хранилища слов
 public final class FileWordProvider implements WordProvider {
 	private final List<Word> words;
 	private final Random random = new Random();
@@ -25,9 +24,9 @@ public final class FileWordProvider implements WordProvider {
 	@Override
 	public Optional<Word> getRandom(Category category, Difficulty difficulty) {
 		List<Word> filtered = words.stream()
-								   .filter(w -> w.getCategory() == category)
-								   .filter(w -> w.getDifficulty() == difficulty)
-								   .collect(Collectors.toList());
+				.filter(w -> w.getCategory() == category)
+				.filter(w -> w.getDifficulty() == difficulty)
+				.collect(Collectors.toList());
 		if (filtered.isEmpty()) {
 			return Optional.empty();
 		}
@@ -49,10 +48,9 @@ public final class FileWordProvider implements WordProvider {
 
 			while ((line = br.readLine()) != null) {
 				line = line.trim();
-				if (line.isEmpty())
+				if (line.isEmpty()) {
 					continue;
-
-				// NOTE Пропускаем заголовок
+				}
 				if (firstLine && line.toLowerCase().startsWith("text;")) {
 					firstLine = false;
 					continue;
@@ -70,14 +68,13 @@ public final class FileWordProvider implements WordProvider {
 	}
 
 	private Word parseLine(String line) {
-		// NOTE text;hint;category;difficulty
 		var parts = line.split(";", -1);
 		if (parts.length < 4) {
 			throw new IllegalArgumentException("Bad line: " + line);
 		}
 
 		var w = new Word();
-		w.setText(parts[0].trim().toLowerCase()); // сразу нормализуем
+		w.setText(parts[0].trim().toLowerCase()); 
 		w.setHint(parts[1].trim());
 		w.setCategory(Category.valueOf(parts[2].trim().toUpperCase()));
 		w.setDifficulty(Difficulty.valueOf(parts[3].trim().toUpperCase()));
